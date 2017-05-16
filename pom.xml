@@ -1,0 +1,130 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.RELEASE</version>
+    </parent>
+    
+    <groupId>io</groupId>
+    <artifactId>springboard</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>SpringBoard-Cloud</name>
+
+    <modules>
+        <module>springboard-core</module>
+        <module>springboard-common</module>
+        <module>account-service</module>
+       	<module>registry-server</module>
+        <module>api-gateway</module>
+        <module>springboard-admin</module>
+        <module>calculate-service/calculate-api</module>
+        <module>calculate-service/add-service</module>
+        <module>calculate-service/divide-service</module>
+        <module>calculate-service/multiply-service</module>
+        <module>calculate-service/subtract-service</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mybatis.version>3.4.1</mybatis.version>
+        <mybatis.spring.version>1.3.0</mybatis.spring.version>
+        <jdbc.driver.groupId>mysql</jdbc.driver.groupId>
+        <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
+        <jdbc.driver.version>5.1.38</jdbc.driver.version>
+        <druid.version>1.0.27</druid.version>
+        <springfox.version>2.2.2</springfox.version>
+        <dubbox.version>2.5.3</dubbox.version>
+    </properties>
+    
+    <dependencies>
+        <!-- testing begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope> 
+        </dependency>
+        <!-- testing end -->
+    </dependencies>
+    
+    <dependencyManagement>
+		<dependencies>
+		    <!-- <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring-security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency> -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Camden.SR2</version>
+				<!-- <version>Brixton.RELEASE</version> -->
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			
+			<!-- core start -->
+			<dependency>
+				<groupId>io</groupId>
+				<artifactId>springboard-core</artifactId>
+				<version>0.1-SNAPSHOT</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>spring-security-core</artifactId>
+						<groupId>org.springframework.security</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-security-oauth2</artifactId>
+						<groupId>org.springframework.security.oauth</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-security-web</artifactId>
+						<groupId>org.springframework.security</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>jedis</artifactId>
+						<groupId>redis.clients</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-data-redis</artifactId>
+						<groupId>org.springframework.data</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-data-mongodb</artifactId>
+						<groupId>org.springframework.data</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+                <groupId>io</groupId>
+                <artifactId>springboard-common</artifactId>
+                <version>0.1-SNAPSHOT</version>
+            </dependency>
+            <!-- core end -->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+</project>

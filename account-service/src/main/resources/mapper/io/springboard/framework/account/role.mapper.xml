@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.account.dao.RoleDao">
+    <resultMap id="roleResultMap" type="io.springboard.account.entity.Role">
+        <id property="id" column="ID" />
+        <result property="name" column="NAME"/>
+        <result property="chineseName" column="CHINESE_NAME"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="createUser" column="CREATEUSER"/>
+        <result property="createDate" column="CREATEDATE"/>
+        <result property="updateUser" column="UPDATEUSER"/>
+        <result property="updateDate" column="UPDATEDATE"/>
+    </resultMap>
+
+	<select id="isUnqiue" resultType="Long">
+        select count(id) from tb_role where id!=#{id} and trim(name)=#{name}
+	</select>
+    
+    <select id="canDelete" resultType="Long">
+        select count(*) from tb_user_role  where role_id=#{id}
+    </select>
+
+    <select id="getPrivileges" resultMap="io.springboard.account.dao.PrivilegeDao.privilegeResultMap">
+        select * from tb_privilege where id in(select privilege_id from tb_role_privilege where role_id=#{id}) and enabled=1 
+        <if test="type != null">
+            and type=#{type}
+        </if>
+        order by code
+    </select>
+    
+	<select id="getAll" resultMap="io.springboard.account.dao.RoleDao.roleResultMap">
+		select * from tb_role
+	</select>
+	
+	<delete id="deleteRolePris">
+    	delete from tb_role_privilege where role_id=#{id}
+    </delete>
+    
+    <insert id="saveRolePri" >
+   		insert into tb_role_privilege(role_id,privilege_id) values(#{roleId},#{privilegeId})
+    </insert>
+    
+	<!-- http://mybatis.github.io/mybatis-3/zh/dynamic-sql.html -->
+</mapper> 

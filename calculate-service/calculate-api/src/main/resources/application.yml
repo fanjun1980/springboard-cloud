@@ -1,0 +1,10 @@
+server:
+  port: 9999
+
+spring:
+  dubbo:
+    application:
+      name: calculate-client
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: io.springboard.calculate

@@ -1,0 +1,15 @@
+server:
+  port: 8383
+
+turbine:
+  appConfig: api-gateway
+  aggregator:
+    clusterConfig: API-GATEWAY
+    
+logging:
+  config: classpath:logback.xml
+  level:
+#    org.springframework.security: DEBUG
+#    org.springframework.cloud.netflix: INFO
+    com.netflix.turbine: ERROR
+    io.springboard.admin: DEBUG

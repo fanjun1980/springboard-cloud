@@ -1,0 +1,67 @@
+package io.springboard.gateway.configuration.security;
+
+import io.springboard.account.dto.RoleDto;
+import io.springboard.account.dto.UserDto;
+import io.springboard.framework.security.SecUser;
+import io.springboard.gateway.service.AccountService;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
+import com.google.common.collect.Sets;
+
+/**
+ * 实现SpringSecurity的UserDetailsService接口,实现获取用户Detail信息的回调函数.
+ * 
+ * @author fanjun
+ */
+@Component
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+	@Autowired
+	private AccountService accountService;
+
+	/**
+	 * 获取用户Details信息的回调函数.
+	 */
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
+
+		UserDto user = accountService.getByUserName(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("用户" + username + " 不存在");
+		}
+
+		Collection<GrantedAuthority> grantedAuths = obtainGrantedAuthorities(user);
+
+		boolean enabled = user.getEnabled() == null ? true : user.getEnabled();
+		boolean accountNonExpired = true; //user.getAccountNonExpired() == null ? true : user.getAccountNonExpired();
+		boolean credentialsNonExpired = true;
+		boolean accountNonLocked = true; //user.getAccountNonLocked() == null ? true : user.getAccountNonLocked();
+
+		UserDetails userdetails = new SecUser(user.getId(), user.getUsername(),
+				user.getPassword(), user.getFullName(),enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuths);
+
+		return userdetails;
+	}
+
+	/**
+	 * 获得用户所有角色的权限集合.
+	 */
+	private Collection<GrantedAuthority> obtainGrantedAuthorities(UserDto user) {
+		Collection<GrantedAuthority> authSet = Sets.newHashSet();
+		List<RoleDto> roles = accountService.getRoles(user.getId());
+		for (RoleDto role : roles) {
+			authSet.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+		}
+		return authSet;
+	}
+}

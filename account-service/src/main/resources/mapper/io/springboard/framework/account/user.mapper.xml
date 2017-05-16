@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.account.dao.UserDao">
+    <resultMap id="userResultMap" type="io.springboard.account.entity.User">
+		<id property="id" column="ID" />
+		<result property="username" column="USERNAME"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="fullName" column="FULLNAME"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="email" column="EMAIL"/>
+		<result property="mobile" column="MOBILE"/>
+		<result property="enabled" column="ENABLED"/>
+		<result property="depId" column="DEP_ID"/>
+		<result property="createUser" column="CREATEUSER"/>
+		<result property="createDate" column="CREATEDATE"/>
+		<result property="updateUser" column="UPDATEUSER"/>
+        <result property="updateDate" column="UPDATEDATE"/>
+	</resultMap>
+
+	<select id="isUnqiue" resultType="Long">
+        select count(id) from tb_user where id!=#{id} and trim(username)=#{username}
+	</select>
+    
+    <select id="canDelete" resultType="Long">
+        
+    </select>
+
+    <select id="getRoles" resultMap="io.springboard.account.dao.RoleDao.roleResultMap">
+        select * from tb_role  where id in(select role_id from tb_user_role where user_id=#{id})
+    </select>
+    
+    <select id="getPrivileges" resultMap="io.springboard.account.dao.PrivilegeDao.privilegeResultMap">
+        select * from tb_privilege  
+        where id in(select privilege_id from tb_role_privilege where role_id in(select role_id from tb_user_role where user_id=#{id})) 
+        and enabled=1 
+        <if test="type != null">
+            and type=#{type}
+        </if>
+        ORDER BY code asc 
+    </select>
+    
+	<select id="getUserBy" resultMap="userResultMap">
+        select * from tb_user  where username=#{username}
+    </select>
+    
+	<delete id="deleteUserRoles">
+    	delete from tb_user_role where user_id=#{id}
+    </delete>
+	<insert id="saveUserRole" >
+		insert into tb_user_role(user_id,role_id) values(#{userId},#{roleId})
+	</insert>
+	
+	<!-- http://mybatis.github.io/mybatis-3/zh/dynamic-sql.html -->
+</mapper> 

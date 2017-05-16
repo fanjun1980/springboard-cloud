@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.account.dao.DepartmentDao">
+    <resultMap id="departmentResultMap" type="io.springboard.account.entity.Department">
+        <id property="id" column="ID" />
+        <result property="code" column="CODE"/>
+        <result property="name" column="NAME"/>
+        <result property="description" column="DESCRIPTION"/>
+        <result property="parentId" column="PARENT_ID"/>
+        <result property="createUser" column="CREATEUSER"/>
+        <result property="createDate" column="CREATEDATE"/>
+        <result property="updateUser" column="UPDATEUSER"/>
+        <result property="updateDate" column="UPDATEDATE"/>
+    </resultMap>
+    
+	<select id="isNameUnqiue" resultType="Long">
+        select count(id) from tb_department where id!=#{id} and trim(name)=#{name}
+	</select>
+    <select id="isCodeUnqiue" resultType="Long">
+        select count(id) from tb_department where id!=#{id} and trim(code)=#{code}
+    </select>
+    
+    <select id="getChildren" resultMap="departmentResultMap">
+        select * from tb_department where PARENT_ID=#{parentId}
+    </select>
+    
+    <select id="getUsers" resultMap="io.springboard.account.dao.UserDao.userResultMap">
+        select * from tb_user where dep_id=#{depId};
+    </select>
+
+	<select id="getAll" resultMap="departmentResultMap">
+		select * from tb_department
+	</select>
+
+	<!-- http://mybatis.github.io/mybatis-3/zh/dynamic-sql.html -->
+</mapper> 

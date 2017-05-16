@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.account.dao.PrivilegeDao">
+    <resultMap id="privilegeResultMap" type="io.springboard.account.entity.Privilege">
+        <id property="id" column="ID" />
+        <result property="code" column="CODE"/>
+        <result property="name" column="NAME"/>
+        <result property="url" column="URL"/>
+        <result property="enabled" column="ENABLED"/>
+        <result property="ico" column="ICO"/>
+        <result property="type" column="TYPE"/>
+        <result property="parentId" column="PARENT_ID"/>
+        <result property="createUser" column="CREATEUSER"/>
+        <result property="createDate" column="CREATEDATE"/>
+        <result property="updateUser" column="UPDATEUSER"/>
+        <result property="updateDate" column="UPDATEDATE"/>
+    </resultMap>
+    
+	<select id="isUnqiue" resultType="Long">
+        select count(id) from tb_privilege where id!=#{id} and trim(code)=#{code}
+	</select>
+    
+    <select id="canDelete" resultType="Long">
+        select count(id) from tb_privilege where parent_id=#{id}
+    </select>
+
+    <select id="getChildren" resultMap="privilegeResultMap">
+        select * from tb_privilege where PARENT_ID=#{parentId} and enabled=1
+    </select>
+    
+	<select id="getAll" resultMap="privilegeResultMap">
+		select * from tb_privilege
+	</select>
+	
+    <delete id="deletePriRoles">
+    	delete from tb_role_privilege where privilege_id=#{id}
+    </delete>
+   
+	<!-- http://mybatis.github.io/mybatis-3/zh/dynamic-sql.html -->
+</mapper> 

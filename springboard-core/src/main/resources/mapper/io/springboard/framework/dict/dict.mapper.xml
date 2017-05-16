@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.framework.dict.dao.DictDao">
+
+	<select id="getDictValue" resultType="java.lang.String" parameterType="java.util.HashMap">
+		select value from tb_dictionary where type = #{type} and keycode=#{keycode}
+	</select>
+
+	<select id="getDictMap" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		select * from tb_dictionary where type = #{type}
+	</select>
+
+</mapper> 

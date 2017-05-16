@@ -1,0 +1,1025 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Springboard",
+		"_postman_id": "821ea7b5-7e8c-e20a-4845-5e51f970bc94",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0.Gateway",
+			"description": "",
+			"item": [
+				{
+					"name": "/oauth/token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "clientapp",
+								"password": "123456",
+								"saveHelperData": true,
+								"showPassword": false
+							}
+						},
+						"url": "http://localhost:9000/oauth/token",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic Y2xpZW50YXBwOjEyMzQ1Ng==",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "clientapp",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "client_secret",
+									"value": "123456",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "scope",
+									"value": "read write",
+									"type": "text",
+									"enabled": false
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/oauth/token/revoke",
+					"request": {
+						"url": "http://localhost:9000/oauth/token/revoke",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/userinfo",
+					"request": {
+						"url": "http://localhost:9000/userinfo",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "/userinfo"
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"url": "http://localhost:9000/api/user/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "get user"
+					},
+					"response": []
+				},
+				{
+					"name": "query user",
+					"request": {
+						"url": "http://localhost:9500/api/user/query",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10,\r\n    \"filter_LIKES_fullName\":\"管理员\"\r\n}"
+						},
+						"description": "query user"
+					},
+					"response": []
+				},
+				{
+					"name": "get role",
+					"request": {
+						"url": "http://localhost:9000/api/role/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "get role"
+					},
+					"response": []
+				},
+				{
+					"name": "get privilege",
+					"request": {
+						"url": "http://localhost:9000/api/privilege/3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get department",
+					"request": {
+						"url": "http://localhost:9000/api/department/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1.User",
+			"description": "用户模块",
+			"item": [
+				{
+					"name": "get user",
+					"request": {
+						"url": "http://localhost:9500/api/user/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "get user"
+					},
+					"response": []
+				},
+				{
+					"name": "query user",
+					"request": {
+						"url": "http://localhost:9500/api/user/query",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10,\r\n    \"filter_LIKES_fullName\":\"管理员\"\r\n}"
+						},
+						"description": "query user"
+					},
+					"response": []
+				},
+				{
+					"name": "save user",
+					"request": {
+						"url": "http://localhost:9500/api/user/save",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"刘文\",\n    \"username\": \"liuwen\",\n    \"password\": \"111111\",\n    \"description\":\"\",\n    \"email\":\"\",\n    \"mobile\":\"\",\n    \"enabled\":true,\n    \"depId\":1,\n    \"roles\":\"1,2\"\n}"
+						},
+						"description": "save user"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"url": "http://localhost:9500/api/user/222",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer f242e483-8640-486c-8885-43ea5f759c38",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_roles",
+					"request": {
+						"url": "http://localhost:9500/api/user/get_roles/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "获取用户已有角色数据"
+					},
+					"response": []
+				},
+				{
+					"name": "/get_curr_user",
+					"request": {
+						"url": "http://localhost:9500/api/user/get_curr_user",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "get curr user"
+					},
+					"response": []
+				},
+				{
+					"name": "/reset_pass",
+					"request": {
+						"url": "http://localhost:9500/api/user/reset_pass",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer ba8817e5-8208-478f-be95-ff2b35f91168",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password_old\":\"abcdef\",\r\n    \"password_new\":\"111111\"\r\n  \r\n}"
+						},
+						"description": "reset password"
+					},
+					"response": []
+				},
+				{
+					"name": "/get_privileges",
+					"request": {
+						"url": "http://localhost:9500/api/user/get_privileges/1?type=1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "获取用户已有权限"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2.Role",
+			"description": "角色模块",
+			"item": [
+				{
+					"name": "get role",
+					"request": {
+						"url": "http://localhost:9500/api/role/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "get role"
+					},
+					"response": []
+				},
+				{
+					"name": "query role",
+					"request": {
+						"url": "http://localhost:9500/api/role/query",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10,\r\n    \"filter_LIKES_name\":\"\"\r\n}"
+						},
+						"description": "query role"
+					},
+					"response": []
+				},
+				{
+					"name": "save role",
+					"request": {
+						"url": "http://localhost:9500/api/role/save",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":999,\n    \"name\": \"ROLE_CUSTOMER\",\n    \"description\":\"\",\n    \"chineseName\":\"客户2\"\n}"
+						},
+						"description": "save role"
+					},
+					"response": []
+				},
+				{
+					"name": "delete role",
+					"request": {
+						"url": "http://localhost:9500/api/role/999",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_privileges",
+					"request": {
+						"url": "http://localhost:9500/api/role/get_privileges/1?type=1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "获取角色已有权限数据"
+					},
+					"response": []
+				},
+				{
+					"name": "/get_all",
+					"request": {
+						"url": "http://localhost:9500/api/role/get_all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10\r\n}"
+						},
+						"description": "获取所有角色"
+					},
+					"response": []
+				},
+				{
+					"name": "/get_meta_source",
+					"request": {
+						"url": "http://localhost:9500/api/role/get_meta_source",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": "获取url-角色对应关系"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.Privilege",
+			"description": "权限模块",
+			"item": [
+				{
+					"name": "get privilege",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/3",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "query privilege",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/query",
+						"method": "POST",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10,\r\n    \"filter_LIKES_name\":\"管理\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "save privilege",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/save",
+						"method": "POST",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"test02\",\n    \"name\": \"test02\",\n    \"url\": \"/notice\",\n    \"html\":\"\",\n    \"enabled\":true,\n    \"ico\":\"\",\n    \"type\":1\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete privilege",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_all_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/get_all_children/9",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/get_children/9",
+						"method": "GET",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_non_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/privilege/get_non_children/9",
+						"method": "GET",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.Department",
+			"description": "",
+			"item": [
+				{
+					"name": "get department",
+					"request": {
+						"url": "http://localhost:9500/api/department/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "query department",
+					"request": {
+						"url": "http://localhost:9500/api/department/query",
+						"method": "POST",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page_pageNo\":1,\r\n    \"page_pageSize\":10,\r\n    \"filter_LIKES_name\":\"部门\"\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "save department",
+					"request": {
+						"url": "http://localhost:9500/api/department/save",
+						"method": "POST",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"depart02\",\n    \"name\": \"测试部门\",\n    \"cusId\": 3\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete department",
+					"request": {
+						"url": "http://localhost:9500/api/department/28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_all_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/department/get_all_children/27",
+						"method": "GET",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/department/get_children/28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/get_non_children/{id}",
+					"request": {
+						"url": "http://localhost:9500/api/department/get_non_children/28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "//Authorization",
+								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
+								"description": "",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5.Calculate",
+			"description": "",
+			"item": [
+				{
+					"name": "calculate",
+					"request": {
+						"url": "http://localhost:9999/api/calculate/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
+								"key": "//Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "( ( ( 15 / 3 ) + ( 1.5 * 2 ) + ( 20 - 12 ))  - 3.2 +2.3 + 5 )"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

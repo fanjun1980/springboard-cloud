@@ -1,0 +1,13 @@
+server:
+  port: 30882
+  
+spring:
+  dubbo:
+    application:
+      name: multiply-service
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    protocol:
+      name: dubbo
+      port: 20882
+    scan: io.springboard.calculate

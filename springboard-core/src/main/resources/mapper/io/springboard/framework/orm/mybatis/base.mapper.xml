@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.springboard.framework.orm.mybatis.SimpleMybatisDao">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">${sql}</insert>
+    <update id="update">${sql}</update>
+    <delete id="delete">${sql}</delete>
+    <select id="get" resultType="hashmap">${sql}</select>
+    <select id="findPage" resultType="hashmap">${sql}</select>
+    <select id="totalCount" resultType="Long">${sql}</select>
+</mapper>
