@@ -1,13 +1,16 @@
 package io.springboard.gateway.configuration.security;
 
+import io.springboard.account.client.UserClient;
 import io.springboard.account.dto.RoleDto;
 import io.springboard.account.dto.UserDto;
+import io.springboard.framework.rest.Response;
 import io.springboard.framework.security.SecUser;
-import io.springboard.gateway.service.AccountService;
 
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,16 +29,23 @@ import com.google.common.collect.Sets;
  */
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
+	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private AccountService accountService;
+	private UserClient userClient;
 
 	/**
 	 * 获取用户Details信息的回调函数.
 	 */
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 
-		UserDto user = accountService.getByUserName(username);
+		UserDto user = null;
+		Response<UserDto> req = userClient.getByUserName(username);
+		if(req.getMeta().isSuccess()) user = req.getData();
+		else {
+			logger.warn("getByUserName error:" + req.getMeta().getMessage());
+		}
+
 		if (user == null) {
 			throw new UsernameNotFoundException("用户" + username + " 不存在");
 		}
@@ -58,7 +68,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	 */
 	private Collection<GrantedAuthority> obtainGrantedAuthorities(UserDto user) {
 		Collection<GrantedAuthority> authSet = Sets.newHashSet();
-		List<RoleDto> roles = accountService.getRoles(user.getId());
+		List<RoleDto> roles = userClient.getRoles(user.getId()).getData();
 		for (RoleDto role : roles) {
 			authSet.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 		}

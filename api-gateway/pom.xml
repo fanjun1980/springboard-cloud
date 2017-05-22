@@ -51,12 +51,6 @@
 		<dependency>
             <groupId>io</groupId>
         	<artifactId>springboard-core</artifactId>
-        	<exclusions>
-        		<exclusion>
-        		    <groupId>org.springframework</groupId>
-        			<artifactId>spring-jdbc</artifactId>
-        		</exclusion>
-        	</exclusions>
 		</dependency>
 		<dependency>
             <groupId>io</groupId>

@@ -1,6 +1,6 @@
 package io.springboard.gateway.configuration.security;
 
-import io.springboard.gateway.service.AccountService;
+import io.springboard.account.client.RoleClient;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class SecurityMetadataSourceService implements FilterInvocationSecurityMe
 	private Collection<ConfigAttribute> denyAll = Arrays.asList(new SecurityConfig("ROLE_DENYALL"));
 	
 	@Autowired
-	private AccountService accountService;
+	private RoleClient roleClient;
 
 	public SecurityMetadataSourceService setAnonymousUrls(String... urls){
 		if(urls != null && urls.length > 0)	{
@@ -57,7 +57,7 @@ public class SecurityMetadataSourceService implements FilterInvocationSecurityMe
 	public void loadMetadataSource() {
 		resourceMap.clear();
 		resourceMap.putAll(anonymousMap);
-		Map<String,Collection<String>> map = accountService.getMetaSource();
+		Map<String,Collection<String>> map = roleClient.getMetaSource().getData();
 		resourceMap.putAll(convertMap(map));
 		logger.info("loadMetadataSource finish.");
 	}

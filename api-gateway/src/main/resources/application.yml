@@ -31,13 +31,18 @@ zuul:
       path: /api/department/**
       serviceId: account-service
       stripPrefix: false
+    calculate-service:
+      path: /api/calculate/
+      serviceId: calculate-service
+      stripPrefix: false      
 
 hystrix:
   command:
     default:
       execution:
-        isolation:
-          strategy: THREAD
+        timeout.enabled: false
+#        isolation:
+#          strategy: THREAD
 #          thread:
 #            timeoutInMilliseconds: 10000
 

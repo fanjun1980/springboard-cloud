@@ -98,6 +98,10 @@
 						<artifactId>spring-data-mongodb</artifactId>
 						<groupId>org.springframework.data</groupId>
 					</exclusion>
+					<exclusion>
+	                    <groupId>org.springframework</groupId>
+	                    <artifactId>spring-jdbc</artifactId>
+	                </exclusion>
 				</exclusions>
 			</dependency>
 			<dependency>

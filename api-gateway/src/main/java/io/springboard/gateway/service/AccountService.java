@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.google.common.collect.Maps;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-@Service
+//@Service
 public class AccountService {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -30,31 +30,31 @@ public class AccountService {
 	@Autowired
 	private RoleClient roleClient;
 	
-	@HystrixCommand(fallbackMethod = "stubMetaSource")
-	public Map<String, Collection<String>> getMetaSource() {
-		return roleClient.getMetaSource().getData();
-	}
+//	@HystrixCommand(fallbackMethod = "stubMetaSource")
+//	public Map<String, Collection<String>> getMetaSource() {
+//		return roleClient.getMetaSource().getData();
+//	}
 	@SuppressWarnings("unused")
     private Map<String, Collection<String>> stubMetaSource() {
 		return Maps.newHashMap();
 	}
 	
-	@HystrixCommand(fallbackMethod = "stubRoles")
-	public List<RoleDto> getRoles(Long id){
-		return userClient.getRoles(id).getData();
-	}
+//	@HystrixCommand(fallbackMethod = "stubRoles")
+//	public List<RoleDto> getRoles(Long id){
+//		return userClient.getRoles(id).getData();
+//	}
 	@SuppressWarnings("unused")
     private List<RoleDto> stubRoles(Long id){
 		return Lists.newArrayList();
 	}
 	
-	@HystrixCommand(ignoreExceptions = {ValidationException.class})
-	public UserDto getByUserName(@PathVariable("username") String username){
-		Response<UserDto> req = userClient.getByUserName(username);
-		if(req.getMeta().isSuccess()) return req.getData();
-		else {
-			logger.warn("getByUserName error:" + req.getMeta().getMessage());
-			return null;
-		}
-	}
+//	@HystrixCommand(ignoreExceptions = {ValidationException.class})
+//	public UserDto getByUserName(@PathVariable("username") String username){
+//		Response<UserDto> req = userClient.getByUserName(username);
+//		if(req.getMeta().isSuccess()) return req.getData();
+//		else {
+//			logger.warn("getByUserName error:" + req.getMeta().getMessage());
+//			return null;
+//		}
+//	}
 }

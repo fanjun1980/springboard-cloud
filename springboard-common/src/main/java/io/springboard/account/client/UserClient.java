@@ -3,6 +3,7 @@ package io.springboard.account.client;
 import io.springboard.account.dto.PrivilegeDto;
 import io.springboard.account.dto.RoleDto;
 import io.springboard.account.dto.UserDto;
+import io.springboard.framework.exception.ValidationException;
 import io.springboard.framework.orm.Page;
 import io.springboard.framework.rest.Response;
 
@@ -16,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 @FeignClient("account-service")
 @RequestMapping(value = "/api/user")
 public interface UserClient {
 	@RequestMapping(value = "/get_by_name/{username}", method = RequestMethod.GET)
     public Response<UserDto> getByUserName(@PathVariable("username") String username);
 	
+	@HystrixCommand(ignoreExceptions = {ValidationException.class})
 	@RequestMapping(value = "/get_roles/{id}", method = RequestMethod.GET)
     public Response<List<RoleDto>> getRoles(@PathVariable("id") Long id);
 	
