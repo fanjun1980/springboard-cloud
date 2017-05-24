@@ -52,13 +52,6 @@
     
     <dependencyManagement>
 		<dependencies>
-		    <!-- <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-bom</artifactId>
-                <version>${spring-security.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency> -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -108,6 +101,12 @@
                 <groupId>io</groupId>
                 <artifactId>springboard-common</artifactId>
                 <version>0.1-SNAPSHOT</version>
+                <exclusions>
+	                <exclusion>
+	                    <groupId>org.springframework.cloud</groupId>
+	                    <artifactId>spring-cloud-starter-security</artifactId>
+	                </exclusion>
+	            </exclusions>
             </dependency>
             <!-- core end -->
 
@@ -120,15 +119,15 @@
             <properties>
                 <profileActive>dev</profileActive>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>prod</id>
             <properties>
                 <profileActive>prod</profileActive>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 </project>

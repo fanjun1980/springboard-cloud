@@ -7,6 +7,7 @@
         <groupId>io</groupId>
         <artifactId>springboard</artifactId>
         <version>0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>divide-service</artifactId>
     <packaging>jar</packaging>
@@ -40,12 +41,6 @@
         <dependency>
             <groupId>io</groupId>
             <artifactId>springboard-common</artifactId>
-            <exclusions>
-            	<exclusion>
-            	    <groupId>org.springframework.cloud</groupId>
-            		<artifactId>spring-cloud-starter-security</artifactId>
-            	</exclusion>
-            </exclusions>
         </dependency>
         
         <dependency>

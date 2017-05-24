@@ -7,11 +7,11 @@
         <groupId>io</groupId>
         <artifactId>springboard</artifactId>
         <version>0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <artifactId>calculate-api</artifactId>
     <packaging>jar</packaging>
     <name>calculate-api</name>
-
 
 	<dependencies>
 		<!-- spring boot begin -->

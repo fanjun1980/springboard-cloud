@@ -110,24 +110,7 @@
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
-                <filtering>false</filtering><!-- 不对静态文件做转码处理 -->
-            </resource>
-            <resource>
-                <directory>${basedir}/config</directory>
                 <filtering>true</filtering>
-                <excludes>
-                    <exclude>application-dev.properties</exclude>
-                    <exclude>application-prod.properties</exclude>
-                    <exclude>application.properties</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${basedir}/config</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>application.properties</include>
-                    <include>application-${profileActive}.properties</include>
-                </includes>
             </resource>
         </resources>
         <plugins>
@@ -146,26 +129,6 @@
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>  
-                <groupId>org.apache.maven.plugins</groupId>  
-                <artifactId>maven-assembly-plugin</artifactId>   
-                <configuration>  
-                    <appendAssemblyId>false</appendAssemblyId>  
-                    <descriptors>  
-                        <descriptor>src/assembly/assembly.xml</descriptor> <!-- Assembly 描述符文件 -->  
-                    </descriptors>  
-                    <finalName>${project.artifactId}</finalName>
-                </configuration>  
-                <executions>  
-                    <execution>  
-                        <id>make-assembly</id>  
-                        <phase>package</phase>  
-                        <goals>  
-                            <goal>single</goal>  
-                        </goals>  
-                    </execution>  
                 </executions>
             </plugin>
         </plugins>
