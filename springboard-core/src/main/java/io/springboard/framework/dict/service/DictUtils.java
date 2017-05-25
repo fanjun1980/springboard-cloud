@@ -1,7 +1,7 @@
 package io.springboard.framework.dict.service;
 
 import io.springboard.framework.dict.entity.Dict;
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class DictUtils {
 
     private static DictService getDictManager() {
         if (dictManager == null)
-            dictManager = SpringContextHolder.getBean(DictService.class);
+            dictManager = SpringUtils.getBean(DictService.class);
 
         return dictManager;
     }

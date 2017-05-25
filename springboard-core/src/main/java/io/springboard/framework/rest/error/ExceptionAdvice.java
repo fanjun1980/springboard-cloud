@@ -3,7 +3,7 @@ package io.springboard.framework.rest.error;
 import io.springboard.framework.exception.ServiceException;
 import io.springboard.framework.exception.ValidationException;
 import io.springboard.framework.rest.Response;
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 import java.util.Arrays;
 
@@ -79,7 +79,7 @@ public class ExceptionAdvice {
     /** 
      * ServiceException 
      */  
-    @ResponseStatus(HttpStatus.OK)  
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServiceException.class)  
     public Response<String> handleServiceException(ServiceException e, HttpServletRequest request) {
         logger.error("运行时异常", e);  
@@ -98,7 +98,7 @@ public class ExceptionAdvice {
     
     
     private String getResponseMessage(String devMessage, String prodMessage) {
-    	String[] activeProfiles = SpringContextHolder.getApplicationContext().getEnvironment().getActiveProfiles();
+    	String[] activeProfiles = SpringUtils.getApplicationContext().getEnvironment().getActiveProfiles();
 		boolean isDev = Arrays.asList(activeProfiles).contains("dev");
 		if (isDev) { // 打印调试信息
 			return devMessage;

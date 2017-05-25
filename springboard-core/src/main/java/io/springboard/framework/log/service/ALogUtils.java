@@ -1,7 +1,7 @@
 package io.springboard.framework.log.service;
 
 import io.springboard.framework.security.SecUser;
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 public class ALogUtils {
 
@@ -9,7 +9,7 @@ private static ActionLogService logManager = null;
 	
 	private static ActionLogService getLogManager(){
 		if(logManager == null)
-			logManager = SpringContextHolder.getBean(ActionLogService.class);
+			logManager = SpringUtils.getBean(ActionLogService.class);
 		return logManager;
 	}
 	

@@ -1,6 +1,6 @@
 package io.springboard.framework.utils.date;
 
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -269,7 +269,7 @@ public class DateUtils {
 	private static DruidDataSource ds = null;
 	public static String dateStrForDB(String date,String format) {
 
-		ds = SpringContextHolder.getBean(DruidDataSource.class);
+		ds = SpringUtils.getBean(DruidDataSource.class);
 		String d = ds.getDriverClassName();
 
 		if (d.indexOf("Oracle") > 0)

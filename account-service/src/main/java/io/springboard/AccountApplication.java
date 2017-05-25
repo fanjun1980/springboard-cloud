@@ -1,15 +1,16 @@
 package io.springboard;
 
 import io.springboard.framework.utils.ThreadUtils;
-
-import java.util.Arrays;
-
+import io.springboard.framework.utils.spring.SpringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
+
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication(scanBasePackages = {"io.springboard"})
 @EnableDiscoveryClient
@@ -22,8 +23,8 @@ public class AccountApplication {
         ApplicationContext ctx = application.run(args);
         
         // profile
-        String[] activeProfiles = ctx.getEnvironment().getActiveProfiles();
-        logger.warn("Use profile:{}" , Arrays.toString(activeProfiles));
+        List activeProfiles = SpringUtils.getActiveProfiles();
+        logger.warn("Use profile:{}" , Arrays.toString(activeProfiles.toArray()));
         
         // 业务逻辑
         final AccountApplication boot = new AccountApplication();

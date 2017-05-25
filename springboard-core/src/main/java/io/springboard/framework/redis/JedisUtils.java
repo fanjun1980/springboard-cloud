@@ -1,6 +1,6 @@
 package io.springboard.framework.redis;
 
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class JedisUtils {
 	private static JedisUtils instance = new JedisUtils();
     
 	private JedisUtils() {
-		jedisFactory = SpringContextHolder.getBean(JedisConnectionFactory.class);
+		jedisFactory = SpringUtils.getBean(JedisConnectionFactory.class);
 	}  
     
     public static JedisUtils getInstance() {  

@@ -3,10 +3,9 @@ package io.springboard.framework.orm.mybatis;
 import io.springboard.framework.orm.Page;
 import io.springboard.framework.orm.PropertyFilter;
 import io.springboard.framework.orm.PropertyFilter.MatchType;
-import io.springboard.framework.orm.mybatis.SimpleMybatisDao;
 import io.springboard.framework.utils.FieldNameUtil;
 import io.springboard.framework.utils.reflection.ReflectionUtils;
-import io.springboard.framework.utils.spring.SpringContextHolder;
+import io.springboard.framework.utils.spring.SpringUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -77,7 +76,7 @@ public class PageInterceptor implements Interceptor {
                 String sql = boundSql.getSql();
                 // Class clazz = ReflectionUtils.getSuperClassGenricType(page.getClass());
                 String daoName = mappedStatement.getId().substring(0, mappedStatement.getId().lastIndexOf("."));
-                SimpleMybatisDao daoInst = (SimpleMybatisDao) SpringContextHolder.getBean(Class.forName(daoName));
+                SimpleMybatisDao daoInst = (SimpleMybatisDao) SpringUtils.getBean(Class.forName(daoName));
                 // Class clazz = ReflectionUtils.getSuperClassGenricType(Class.forName(daoName));
                 Class clazz = daoInst.getEntityClass();
                 if (sql == null || sql.trim().isEmpty()) {

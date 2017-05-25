@@ -8,17 +8,20 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
+ * Spring工具类
  * 以静态变量保存Spring ApplicationContext, 可在任何代码任何地方任何时候中取出ApplicaitonContext.
- * 
  */
 @Service
 @Lazy(false)
-public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
+public class SpringUtils implements ApplicationContextAware, DisposableBean {
 
 	private static ApplicationContext applicationContext = null;
 
-	private static Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
+	private static Logger logger = LoggerFactory.getLogger(SpringUtils.class);
 
 	/**
 	 * 实现ApplicationContextAware接口, 注入Context到静态变量中.
@@ -26,12 +29,12 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		logger.debug("注入ApplicationContext到SpringContextHolder:" + applicationContext);
 
-		if (SpringContextHolder.applicationContext != null) {
+		if (SpringUtils.applicationContext != null) {
 			logger.warn("SpringContextHolder中的ApplicationContext被覆盖, 原有ApplicationContext为:"
-					+ SpringContextHolder.applicationContext);
+					+ SpringUtils.applicationContext);
 		}
 
-		SpringContextHolder.applicationContext = applicationContext; //NOSONAR
+		SpringUtils.applicationContext = applicationContext; //NOSONAR
 	}
 
 	/**
@@ -39,7 +42,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	@Override
 	public void destroy() throws Exception {
-		SpringContextHolder.clear();
+		SpringUtils.clear();
 	}
 
 	/**
@@ -73,6 +76,34 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	public static void clear() {
 		logger.debug("清除SpringContextHolder中的ApplicationContext:" + applicationContext);
 		applicationContext = null;
+	}
+
+	/**
+	 * 获取当前profiles
+	 */
+	public static List<String> getActiveProfiles(){
+		assertContextInjected();
+		String[] activeProfiles = getApplicationContext().getEnvironment().getActiveProfiles();
+		return Arrays.asList(activeProfiles);
+	}
+
+	/**
+	 * 获取配置文件数据
+	 */
+	public static String getProperty(String key) {
+		assertContextInjected();
+		return getApplicationContext().getEnvironment().getProperty(key);
+	}
+
+	/**
+	 * 获取配置文件数据
+	 * @param key
+	 * @param defaultValue 默认值
+	 * @return
+	 */
+	public static String getProperty(String key, String defaultValue) {
+		assertContextInjected();
+		return getApplicationContext().getEnvironment().getProperty(key, defaultValue);
 	}
 
 	/**
