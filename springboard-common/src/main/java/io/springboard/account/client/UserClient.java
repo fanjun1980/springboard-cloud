@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-@FeignClient("account-service")
+@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}")
 @RequestMapping(value = "/api/user")
 public interface UserClient {
 	@RequestMapping(value = "/get_by_name/{username}", method = RequestMethod.GET)

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("account-service")
+@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}")
 @RequestMapping(value = "/api/role")
 public interface RoleClient {
 	

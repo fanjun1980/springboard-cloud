@@ -1,15 +1,28 @@
-# server
+# Server
 server:
   port: 9500
 
-# eureka
+# Eureka
+# eureka:
+#  instance:
+#    prefer-ip-address: true
+#    leaseRenewalIntervalInSeconds: 5
+#    instance-id: ${spring.application.name}:${server.port}:${random.value}
+#  client:
+#    enabled: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#    fetch-registry: true
+#    healthcheck.enabled: true
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 5
+    prefer-ip-address: true
   client:
-#    enable: false
-    healthcheck.enabled: true
-    serviceUrl.defaultZone: http://localhost:8761/eureka/
+    enabled: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 # SECURITY (SecurityProperties)
 security:

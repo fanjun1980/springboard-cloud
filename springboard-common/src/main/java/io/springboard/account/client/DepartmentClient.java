@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient("account-service")
+@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}")
 @RequestMapping(value = "/api/Department")
 public interface DepartmentClient{
 	

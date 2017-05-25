@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient("calculate-api")
+@FeignClient(name = "calculate-api", url = "${springcloud.feignclient.calculate-service:}")
 @RequestMapping(value = "/api/calculate")
 public interface CalculateClient {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
