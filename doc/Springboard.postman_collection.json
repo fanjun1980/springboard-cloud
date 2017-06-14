@@ -43,38 +43,33 @@
 								{
 									"key": "client_id",
 									"value": "clientapp",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "client_secret",
 									"value": "123456",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "grant_type",
 									"value": "password",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "username",
 									"value": "admin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "password",
 									"value": "admin",
-									"type": "text",
-									"enabled": true
+									"type": "text"
 								},
 								{
 									"key": "scope",
 									"value": "read write",
 									"type": "text",
-									"enabled": false
+									"disabled": true
 								}
 							]
 						},
@@ -241,6 +236,27 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "calculate",
+					"request": {
+						"url": "http://localhost:9999/api/calculate/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "((15 / 3) + (1.5 * 2) + (20 - 12)) - 3.2 +2.3 + 5 "
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
@@ -260,7 +276,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
 								"description": "",
 								"disabled": true
@@ -283,7 +299,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
 								"description": "",
 								"disabled": true
@@ -309,7 +325,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -335,7 +351,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer f242e483-8640-486c-8885-43ea5f759c38",
 								"description": "",
 								"disabled": true
@@ -361,7 +377,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -384,7 +400,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -407,7 +423,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer ba8817e5-8208-478f-be95-ff2b35f91168",
 								"description": "",
 								"disabled": true
@@ -433,7 +449,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -462,7 +478,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -485,7 +501,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -511,7 +527,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -537,7 +553,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -563,7 +579,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
 								"description": "",
 								"disabled": true
@@ -586,7 +602,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -612,7 +628,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -641,7 +657,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -659,7 +675,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -685,7 +701,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
 								"description": "",
 								"disabled": true
@@ -711,7 +727,7 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
 								"description": "",
 								"disabled": true
@@ -742,7 +758,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -760,7 +776,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -786,7 +802,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -823,7 +839,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -841,7 +857,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -867,7 +883,7 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
 								"description": "",
 								"disabled": true
@@ -893,7 +909,7 @@
 						"method": "DELETE",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer d715b58f-1199-4e18-8ee9-6b217866b3d0",
 								"description": "",
 								"disabled": true
@@ -919,7 +935,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -942,7 +958,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -968,7 +984,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 5a62354b-d87a-421e-8014-f484b2f33a4b",
 								"description": "",
 								"disabled": true
@@ -1005,7 +1021,7 @@
 								"description": ""
 							},
 							{
-								"key": "//Authorization",
+								"key": "Authorization",
 								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
 								"description": "",
 								"disabled": true
@@ -1013,7 +1029,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "( ( ( 15 / 3 ) + ( 1.5 * 2 ) + ( 20 - 12 ))  - 3.2 +2.3 + 5 )"
+							"raw": "((15 / 3) + (1.5 * 2) + (20 - 12)) - 3.2 +2.3 + 5 "
 						},
 						"description": ""
 					},
