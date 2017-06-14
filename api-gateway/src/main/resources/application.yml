@@ -5,10 +5,14 @@ server:
 # Eureka
 #eureka:
 #  instance:
+#    prefer-ip-address: true
 #    leaseRenewalIntervalInSeconds: 5
 #    leaseExpirationDurationInSeconds: 15
 #    instanceId: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
 #  client:
+#    enabled: true
+#    register-with-eureka: true
+#    fetchRegistry: true
 #    registryFetchIntervalSeconds: 5
 #    healthcheck:
 #      enabled: true
@@ -19,9 +23,9 @@ eureka:
     prefer-ip-address: true
   client:
     enabled: false
+    register-with-eureka: false
     service-url:
       defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: false
 springcloud:
   feignclient:
     account-service: http://localhost:9500
@@ -64,6 +68,8 @@ hystrix:
 #          strategy: THREAD
 #          thread:
 #            timeoutInMilliseconds: 10000
+    #强制打开熔断状态
+#    circuitBreaker.forceOpen: true
 
 spring:
   datasource:

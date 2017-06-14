@@ -68,7 +68,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	 */
 	private Collection<GrantedAuthority> obtainGrantedAuthorities(UserDto user) {
 		Collection<GrantedAuthority> authSet = Sets.newHashSet();
-		List<RoleDto> roles = userClient.getRoles(user.getId()).getData();
+		
+		Response<List<RoleDto>> req = userClient.getRoles(user.getId());
+		if(!req.getMeta().isSuccess()) logger.warn("getRoles error:" + req.getMeta().getMessage());
+		List<RoleDto> roles = req.getData();
 		for (RoleDto role : roles) {
 			authSet.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 		}

@@ -39,6 +39,11 @@ public class Response<T> {
 		this.meta = new Meta(false, code, message);
 		return this;
 	}
+	public Response<T> failure(int code, String message, T data) {
+		this.meta = new Meta(false, code, message);
+		this.data = data;
+		return this;
+	}
 
 	public Meta getMeta() {
 		return meta;

@@ -19,35 +19,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}")
-@RequestMapping(value = "/api/user")
+@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}", fallback = UserClientFallback.class)
 public interface UserClient {
-	@RequestMapping(value = "/get_by_name/{username}", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/api/user/get_by_name/{username}", method = RequestMethod.GET)
     public Response<UserDto> getByUserName(@PathVariable("username") String username);
 	
 	@HystrixCommand(ignoreExceptions = {ValidationException.class})
-	@RequestMapping(value = "/get_roles/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/get_roles/{id}", method = RequestMethod.GET)
     public Response<List<RoleDto>> getRoles(@PathVariable("id") Long id);
 	
-	@RequestMapping(value = "/get_curr_user", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/get_curr_user", method = RequestMethod.GET)
     public Response<UserDto> getCurrUser();
 	
-	@RequestMapping(value = "/reset_pass", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/user/reset_pass", method = RequestMethod.POST)
     public Response<String> resetPass(@RequestBody Map<String, Object> params);
 	
-	@RequestMapping(value = "/get_privileges", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/get_privileges", method = RequestMethod.GET)
 	public Response<List<PrivilegeDto>> getPrivileges(@PathVariable("id") Long id, @RequestParam(name="type",required=false) Long type);
 	
 	//=======================================================================
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
 	public Response<UserDto> get(@PathVariable("id") Long id);
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/user/save", method = RequestMethod.POST)
 	public Response<String> save(@RequestBody UserDto dto);
 	
-	@RequestMapping(value = "/{ids}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/user/{ids}", method = RequestMethod.DELETE)
 	public Response<String> delete(@PathVariable("ids") String ids);
 	
-	@RequestMapping(value = "/query", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/user/query", method = RequestMethod.POST)
 	public Response<Page<UserDto>> query(@RequestBody Map<String, Object> params);
 }

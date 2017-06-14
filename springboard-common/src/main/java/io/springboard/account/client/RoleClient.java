@@ -17,29 +17,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}")
-@RequestMapping(value = "/api/role")
+@FeignClient(name = "account-service", url = "${springcloud.feignclient.account-service:}", fallback = RoleClientFallback.class)
 public interface RoleClient {
 	
-	@RequestMapping(value = "/get_privileges/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/role/get_privileges/{id}", method = RequestMethod.GET)
 	public Response<List<PrivilegeDto>> getPrivileges(@PathVariable("id") Long id, @RequestParam(name="type",required=false) Long type);
 	
-	@RequestMapping(value = "/get_all", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/role/get_all", method = RequestMethod.GET)
 	public Response<List<RoleDto>> getAll();
 	
-	@RequestMapping(value = "/get_meta_source", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/role/get_meta_source", method = RequestMethod.GET)
 	public Response<Map<String, Collection<String>>> getMetaSource();
 	
 	//=======================================================================
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/role/{id}", method = RequestMethod.GET)
 	public Response<RoleDto> get(@PathVariable("id") Long id);
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/role/save", method = RequestMethod.POST)
 	public Response<String> save(@RequestBody RoleDto dto);
 	
-	@RequestMapping(value = "/{ids}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/role/{ids}", method = RequestMethod.DELETE)
 	public Response<String> delete(@PathVariable("ids") String ids);
 	
-	@RequestMapping(value = "/query", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/role/query", method = RequestMethod.POST)
 	public Response<Page<RoleDto>> query(@RequestBody Map<String, Object> params);
 }
+
+

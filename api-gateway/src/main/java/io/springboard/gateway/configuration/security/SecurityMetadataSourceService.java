@@ -1,6 +1,7 @@
 package io.springboard.gateway.configuration.security;
 
 import io.springboard.account.client.RoleClient;
+import io.springboard.framework.rest.Response;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +58,10 @@ public class SecurityMetadataSourceService implements FilterInvocationSecurityMe
 	public void loadMetadataSource() {
 		resourceMap.clear();
 		resourceMap.putAll(anonymousMap);
-		Map<String,Collection<String>> map = roleClient.getMetaSource().getData();
+		
+		Response<Map<String, Collection<String>>> req = roleClient.getMetaSource();
+		if(!req.getMeta().isSuccess()) logger.warn("getMetaSource error:" + req.getMeta().getMessage());
+		Map<String,Collection<String>> map = req.getData();
 		resourceMap.putAll(convertMap(map));
 		logger.info("loadMetadataSource finish.");
 	}
