@@ -1,10 +1,25 @@
 server:
   port: 8383
 
+# Eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 15
+    instanceId: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
+  client:
+    enabled: true
+    register-with-eureka: false
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 turbine:
-  appConfig: api-gateway
+  appConfig: api-gateway,calculate-service
   aggregator:
-    clusterConfig: API-GATEWAY
+    clusterConfig: API-GATEWAY,CALCULATE-SERVICE
     
 logging:
   config: classpath:logback.xml
