@@ -1,6 +1,7 @@
 server:
   port: 9999
 
+# Dubbo
 spring:
   dubbo:
     application:
@@ -8,3 +9,33 @@ spring:
     registry:
       address: zookeeper://127.0.0.1:2181
     scan: io.springboard.calculate
+    
+# Hystrix
+hystrix:
+  command:
+    default.execution.isolation.strategy: THREAD
+    default.circuitBreaker.sleepWindowInMilliseconds: 30000
+
+# Eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 15
+    instanceId: ${spring.cloud.client.ipAddress}:${spring.application.name}:${server.port}
+  client:
+    enabled: true
+    register-with-eureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+# LOGGING
+logging:
+  config: classpath:logback.xml
+  level:
+#    org.springframework.security: DEBUG
+#    org.springframework.cloud.netflix: INFO
