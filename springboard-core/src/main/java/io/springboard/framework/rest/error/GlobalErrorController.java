@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class GlobalErrorController extends AbstractErrorController {
@@ -45,6 +46,7 @@ public class GlobalErrorController extends AbstractErrorController {
 
 	@RequestMapping("${server.error.path:${error.path:/error}}")
 	@ResponseBody
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public Response<String> error(HttpServletRequest request) {
 //		Map<String, Object> body = getErrorAttributes(request,isIncludeStackTrace(request, MediaType.ALL));
 		HttpStatus status = getStatus(request);
