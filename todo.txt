@@ -1,0 +1,31 @@
+ok  1.添加服务发现机制，可调用account-service
+ok  2.添加FeignClient，权限模块验证都调用account-service
+ok  3.meta、accessdecide使用account-service验证
+ok  4.DTO<->Entity
+ok  5.使用Hystrix Clients
+ok  6.多api gateway，多微服务节点测试
+-.postman
+
+6.hystrix，对client、对dubbo
+7.Hystrix仪表盘+Turbin
+
+-.CrudClients
+
+-.response.getData,更好的处理错误信息，减少代码量
+-.springboard-admin,加spring admin
+-.profile，mvn、spring；dev加devtools
+
+-.metadatasource支持requestMatcher
+ExpressionBasedFilterInvocationSecurityMetadataSource
+DefaultFilterInvocationSecurityMetadataSource
+AntPathRequestMatcher
+
+-.集成redission
+
+-.Spring Cloud sleuth,追踪日志,ELK,zipkin/pinpoint
+
+-.config
+-.Metrics Spring
+
+-.优化mybatis用法
+-.改造account-service(api/service)

@@ -13,6 +13,20 @@
 			"item": [
 				{
 					"name": "/oauth/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setGlobalVariable(\"access_token\", jsonData.access_token);"
+								]
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -23,7 +37,7 @@
 								"showPassword": false
 							}
 						},
-						"url": "http://localhost:9000/oauth/token",
+						"url": "http://{{gateway}}/oauth/token",
 						"method": "POST",
 						"header": [
 							{
@@ -79,8 +93,19 @@
 				},
 				{
 					"name": "/oauth/token/revoke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/oauth/token/revoke",
+						"url": "http://{{gateway}}/oauth/token/revoke",
 						"method": "POST",
 						"header": [
 							{
@@ -90,7 +115,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -104,8 +129,19 @@
 				},
 				{
 					"name": "/userinfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/userinfo",
+						"url": "http://{{gateway}}/userinfo",
 						"method": "GET",
 						"header": [
 							{
@@ -115,7 +151,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -126,8 +162,19 @@
 				},
 				{
 					"name": "get user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/api/user/1",
+						"url": "http://{{gateway}}/api/user/1",
 						"method": "GET",
 						"header": [
 							{
@@ -137,7 +184,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -173,8 +220,19 @@
 				},
 				{
 					"name": "get role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/api/role/1",
+						"url": "http://{{gateway}}/api/role/1",
 						"method": "GET",
 						"header": [
 							{
@@ -184,7 +242,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -195,8 +253,19 @@
 				},
 				{
 					"name": "get privilege",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/api/privilege/3",
+						"url": "http://{{gateway}}/api/privilege/3",
 						"method": "GET",
 						"header": [
 							{
@@ -206,7 +275,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -217,8 +286,19 @@
 				},
 				{
 					"name": "get department",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9000/api/department/1",
+						"url": "http://{{gateway}}/api/department/1",
 						"method": "GET",
 						"header": [
 							{
@@ -228,7 +308,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
+								"value": "Bearer {{access_token}}",
 								"description": ""
 							}
 						],
@@ -239,15 +319,30 @@
 				},
 				{
 					"name": "calculate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": "http://localhost:9999/api/calculate/",
+						"url": "http://{{gateway}}/api/calculate/",
 						"method": "POST",
 						"header": [
 							{
+								"key": "Content-Type",
+								"value": "application/json;charset=utf-8",
+								"description": ""
+							},
+							{
 								"key": "Authorization",
-								"value": "Bearer 95802e26-6967-4da3-a36e-2164aa9c9faf",
-								"description": "",
-								"disabled": true
+								"value": "Bearer {{access_token}}",
+								"description": ""
 							}
 						],
 						"body": {
