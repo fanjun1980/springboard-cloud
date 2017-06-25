@@ -27,5 +27,6 @@ AntPathRequestMatcher
 -.config
 -.Metrics Spring
 
+-.spring security oauth2 自定义OAuthExcption输出json https://github.com/spring-projects/spring-security-oauth/issues/610
 -.优化mybatis用法
 -.改造account-service(api/service)

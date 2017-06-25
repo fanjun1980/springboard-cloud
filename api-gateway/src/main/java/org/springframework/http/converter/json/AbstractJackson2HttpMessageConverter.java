@@ -1,6 +1,5 @@
 package org.springframework.http.converter.json;
 
-import io.springboard.framework.log.service.ALogUtils;
 import io.springboard.framework.rest.Response;
 
 import java.io.IOException;
@@ -232,20 +231,17 @@ public abstract class AbstractJackson2HttpMessageConverter extends AbstractGener
 			
 			Object value = object;
 			
-			// add by fanjun, 20160222
 			// Exception转成内部json
 			if(object instanceof OAuth2Exception) { 
 				OAuth2Exception ex = (OAuth2Exception) object;
 				Response res = new Response().failure(ex.getHttpErrorCode(), ex.getMessage());
 				value = res;
 				
-				//TODO 非法访问日志,有问题，取不到url等
-				if(ex instanceof InvalidTokenException || ex.getCause() instanceof AccessDeniedException 
-						|| ex.getCause() instanceof AuthenticationException || ex.getCause() instanceof HttpRequestMethodNotSupportedException){
-					ALogUtils.addLog("授权校验", "非授权访问", null, 0, null);
-				}
+//				if(ex instanceof InvalidTokenException || ex.getCause() instanceof AccessDeniedException
+//						|| ex.getCause() instanceof AuthenticationException || ex.getCause() instanceof HttpRequestMethodNotSupportedException){
+//					ALogUtils.addLog("授权校验", "非授权访问", null, 0, null);
+//				}
 			} 
-			// add end
 			
 			JavaType javaType = null;
 			if (object instanceof MappingJacksonValue) {

@@ -32,9 +32,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);	// 排除值为空属性
 	//	objectMapper.setSerializationInclusion(JsonInclude.Include.NON_DEFAULT);// 排除初始值未被改变的属性
 	//	objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-		objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);		// 进行缩进输出  
-//		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		// 进行日期格式化  
+		// 进行日期格式化
 		DateFormat dateFormat = new SimpleDateFormat(DateUtils.DateAndTimeFormat);
 		objectMapper.setDateFormat(dateFormat);
 		// 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
