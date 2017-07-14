@@ -13,7 +13,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,7 +36,7 @@ public class OAuth2ServerConfig {
 		public void configure(ResourceServerSecurityConfigurer resources) {
 			resources.resourceId(RESOURCE_ID);
 			// 根据userinfo生成Principle
-			userInfoTokenServices.setPrincipalExtractor(new BanbuPrincipalExtractor());
+			userInfoTokenServices.setPrincipalExtractor(new CustomPrincipalExtractor());
 		}
 
 		@Override
@@ -60,9 +59,15 @@ public class OAuth2ServerConfig {
 	@EnableResourceServer
 	protected static class ProdResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
+		@Qualifier("userInfoTokenServices")
+		@Autowired
+		UserInfoTokenServices userInfoTokenServices;
+
 		@Override
 		public void configure(ResourceServerSecurityConfigurer resources) {
 			resources.resourceId(RESOURCE_ID);
+			// 根据userinfo生成Principle
+			userInfoTokenServices.setPrincipalExtractor(new CustomPrincipalExtractor());
 		}
 
 		@Override
@@ -82,7 +87,7 @@ public class OAuth2ServerConfig {
 	}
 }
 
-class BanbuPrincipalExtractor implements PrincipalExtractor {
+class CustomPrincipalExtractor implements PrincipalExtractor {
 	@Override
 	public Object extractPrincipal(Map<String, Object> map) {
 		Map<String, Object> principal = (Map<String, Object>)map.get("principal");
