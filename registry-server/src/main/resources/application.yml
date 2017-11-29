@@ -4,7 +4,7 @@ server:
 eureka:
   server:
     enableSelfPreservation: false
-#    evictionIntervalTimerInMs: 1000
+#    evictionIntervalTimerInMs: 5000
   instance:
     hostname: localhost
   client:
